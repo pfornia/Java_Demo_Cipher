@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class cipher {
     
     public static String decrypt(String strIn, char[] keyIn, char[] keyOut){
@@ -31,12 +33,19 @@ public class cipher {
         return keyNew;
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+        throws java.io.IOException {
         char[] keyIn = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
                      , 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v'
                      , 'w', 'x', 'y', 'z'};
 
-        String a = "oehpr jvyyvf jnf qrnq gur jubyr gvzr";
+        //String a = "oehpr jvyyvf jnf qrnq gur jubyr gvzr";
+        
+        System.out.println("Please enter encrypted message (lowercase only).");
+        
+        //read input
+        Scanner terminalScanner = new Scanner(System.in);
+        String a = terminalScanner.nextLine();
         
         for(int i = 0; i < 26; i++){
             char[] keyOut = rotateLeft(keyIn, i);
