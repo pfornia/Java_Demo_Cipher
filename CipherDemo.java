@@ -4,7 +4,7 @@ public class CipherDemo {
     public static void main(String[] args) 
         throws java.io.IOException {
 
-        Cipher myCipher = new Cipher();
+        //Cipher myCipher = new Cipher();
         
         //String a = "oehpr jvyyvf jnf qrnq gur jubyr gvzr";
         
@@ -12,7 +12,8 @@ public class CipherDemo {
         
         //read input
         Scanner terminalScanner = new Scanner(System.in);
-        myCipher.encryptedMessage = terminalScanner.nextLine();
+        //myCipher.encryptedMessage = terminalScanner.nextLine();
+        Cipher myCipher = new Cipher(terminalScanner.nextLine());
         
         Key myKey = new Key();
         
@@ -29,7 +30,11 @@ public class CipherDemo {
 class Cipher {
     String encryptedMessage;
     
-    public String decrypt(Key myKey){
+    Cipher(String eM){
+        encryptedMessage = eM;
+    }
+    
+    String decrypt(Key myKey){
         char[] encryptedChar;
         encryptedChar = encryptedMessage.toCharArray();
         
@@ -48,12 +53,16 @@ class Cipher {
 }
 
 class Key {
-    char[] keyIn = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
+    char[] keyIn;
+    char[] keyOut;
+
+    Key() {
+        keyIn = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
                     ,'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v'
                     ,'w', 'x', 'y', 'z'};
-    char[] keyOut;
+    }
   
-    public void rotateLeft(int n){
+    void rotateLeft(int n){
         int N = keyIn.length;
         char[] keyNew = new char[N];
         n = n%N;
